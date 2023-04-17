@@ -6,6 +6,12 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      'sans': ['Plus Jakarta Text', 'sans-serif'],
+      'serif': ['Plus Jakarta Text', 'serif'],
+      'mono': ['Plus Jakarta Text', 'monospace'],
+      'display': ['Plus Jakarta Text', 'sans-serif'],
+    },
   },
   plugins: [],
 }
