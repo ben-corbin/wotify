@@ -1,9 +1,13 @@
 <template>
-  <main class="container flex flex-row bg-red-500 mx-auto">
-    <h1>This will be the home page</h1>
+  <main class="container flex flex-row mx-auto justify-center w-1/2">
+    <SearchBar />
+    
   </main>
+  <AuthoriseWithSpotify />
 </template>
 
 <script setup>
+import SearchBar from '../components/SearchBar.vue';
+import AuthoriseWithSpotify from '../components/AuthoriseWithSpotify.vue';
 
 </script>
