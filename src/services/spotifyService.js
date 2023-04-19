@@ -37,22 +37,34 @@ async function getAccessToken() {
   return authStore.accessToken;
 }
 
-async function search(query, type = 'artist,track,album') {
-  try {
-    const response = await apiClient.get('/search', {
-      params: {
-        q: query,
-        type,
-      },
-    });
+async function search(query, token, type, offset, limit) {
+    try {
+      const response = await axios.get('https://api.spotify.com/v1/search', {
+        params: {
+          q: query,
+          type: type,
+          offset: offset,
+          limit: limit,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-    return response.data;
-  } catch (error) {
-    console.error('Error searching Spotify API:', error);
-    throw error;
+      console.log('Response data:', response.data);
+  
+      return {
+        artists: response.data.artists.items || [],
+        tracks: response.data.tracks.items || [],
+        albums: response.data.albums.items || [],
+      };
+    } catch (error) {
+      console.error('Error searching Spotify API:', error);
+      throw new Error('Error searching Spotify API');
+    }
   }
-}
 
 export default {
   search,
+  getAccessToken,
 };

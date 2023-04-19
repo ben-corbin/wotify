@@ -10,7 +10,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: HomeView
     },
     {
@@ -28,8 +28,9 @@ const router = createRouter({
       name: 'Callback',
       beforeEnter: async (to, from, next) => {
         const code = to.query.code;
-  
+        
         if (code) {
+          console.log('Authorization code:', code);
           const tokens = await requestAccessToken(code);
   
           if (tokens) {
@@ -41,6 +42,7 @@ const router = createRouter({
             next({ name: 'Home' });
           } else {
             // TODO - Handle error in getting tokens
+            console.error('Authorisation code has expired or is invalid. Please try again.')
             next({ name: 'Home' });
           }
         } else {

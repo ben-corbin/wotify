@@ -14,7 +14,7 @@ export async function requestAccessToken(code) {
       },
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString('base64')}`,
+        Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
       },
     });
 
@@ -38,7 +38,7 @@ export async function refreshToken(refreshToken) {
         },
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString('base64')}`,
+          Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
         },
       });
   
