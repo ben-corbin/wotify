@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto px-4 bg-white overflow-y-auto">
-      <div class="grid grid-cols-3 gap-4 justify-items-center">
+      <div class="grid grid-cols-3 gap-4 justify-items-start">
         <!-- Artists Column -->
         <div class="col-span-1">
           <h2 class="text-xl font-semibold mb-4 text-center text-black">Artists</h2>
@@ -17,7 +17,7 @@
   
         <!-- Tracks Column -->
         <div class="col-span-1">
-          <h2 class="text-xl font-semibold mb-4 text-center text-white">Tracks</h2>
+          <h2 class="text-xl font-semibold mb-4 text-center text-black">Tracks</h2>
           <ul>
             <li v-for="track in tracks" :key="track.id" class="mb-2">
               <div class="flex items-center space-x-2">
@@ -34,7 +34,7 @@
   
         <!-- Albums Column -->
         <div class="col-span-1">
-          <h2 class="text-xl font-semibold mb-4 text-center text-white">Albums</h2>
+          <h2 class="text-xl font-semibold mb-4 text-center text-black">Albums</h2>
           <ul>
             <li v-for="album in albums" :key="album.id" class="mb-2">
               <div class="flex items-center space-x-2">
@@ -60,6 +60,8 @@ import { useSearchStore } from '@/stores/searchStore';
 export default defineComponent({
   setup() {
     const defaultImage = 'https://via.placeholder.com/64';
+
+    // Get an instance of the search store
     const searchStore = useSearchStore();
 
     const loadMoreArtists = async () => {
@@ -74,6 +76,7 @@ export default defineComponent({
       await searchStore.loadMoreAlbums();
     };
 
+    // Create computed properties to access the search store
     const artists = computed(() => searchStore.artists);
     const tracks = computed(() => searchStore.tracks);
     const albums = computed(() => searchStore.albums);

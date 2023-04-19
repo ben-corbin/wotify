@@ -11,6 +11,7 @@ export const useSearchStore = defineStore({
     offsetArtists: 20,
     offsetTracks: 20,
     offsetAlbums: 20,
+    searchQuery: '',
   }),
 
   actions: {

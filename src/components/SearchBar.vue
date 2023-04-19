@@ -25,6 +25,8 @@
   
       function debounceSearch() {
         clearTimeout(searchTimeout);
+        // when the debounce function is called, it will wait 500ms before calling the search function
+        // via the setTimeout function which calls the annoymous function that calls the search function
         searchTimeout = setTimeout(() => {
           search();
         }, 500);
@@ -36,9 +38,9 @@
             searchStore.searchQuery = query.value; // Set the search query in the store
 
             // Reset the offsets in the store
-            searchStore.offsetArtists = 0;
-            searchStore.offsetTracks = 0;
-            searchStore.offsetAlbums = 0;
+            // searchStore.offsetArtists = 0;
+            // searchStore.offsetTracks = 0;
+            // searchStore.offsetAlbums = 0;
 
             const results = await searchService.searchInitial(query.value);
 
