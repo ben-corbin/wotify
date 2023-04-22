@@ -1,46 +1,43 @@
 <template>
   <div class="text-center pt-8">
-    <!-- Create an authorize button that triggers the 'authorize' method on click -->
-    <button @click="authorize" class="bg-green-600 text-white font-semibold py-2 px-4 rounded shadow-md hover:bg-green-800">
+    <button
+      @click="authorise"
+      class="bg-green-600 text-white font-semibold py-2 px-4 rounded shadow-md hover:bg-green-800"
+      :class="{ 'opacity-50 bg-gray cursor-not-allowed': isAuthorised }"
+    >
       Authorize with Spotify
     </button>
   </div>
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useAuthStore } from '@/stores/authStore';
+import { computed } from 'vue'
+import { useAuthStore } from '@/stores/authStore'
+import { authorizeSpotify } from '@/auth'
 
 export default {
   setup() {
     // Get an instance of the authStore
-    const authStore = useAuthStore();
+    const authStore = useAuthStore()
 
-    // Create a computed property to check if the user is authenticated
-    const isAuthenticated = computed(() => authStore.isAuthenticated);
+    // Create a variable to store value of user authenticated state
+    const isAuthorised = computed(() => authStore.isAuthorised)
 
-    // The 'authorize' function is called when the button is clicked
-    function authorize() {
+    console.log('isAuthorised', isAuthorised.value)
+
+    // The 'authorise' function is called when the button is clicked
+    function authorise() {
       // If the user is not authenticated, proceed with authorization
-      if (!isAuthenticated.value) {
-        // Set the necessary OAuth parameters
-        const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-        const redirectUri = encodeURIComponent(import.meta.env.VITE_REDIRECT_URI);
-        const scope = encodeURIComponent('user-read-private user-read-email');
-        const responseType = 'code';
-
-        // Build the authorization URL
-        const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=${responseType}`;
-
-        // Redirect the user to the Spotify authorization page
-        window.location.href = authUrl;
+       if (!isAuthorised.value) {
+        authorizeSpotify()
       }
     }
 
-    // Expose the 'authorize' function for use in the template
+    // Expose the 'authorise' function for use in the template
     return {
-      authorize,
-    };
-  },
-};
+      authorise,
+      isAuthorised
+    }
+  }
+}
 </script>

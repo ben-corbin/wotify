@@ -18,43 +18,49 @@ const router = createRouter({
     {
       path: '/search/:query',
       name: 'SearchResults',
-      component: SearchResultsView, // Display the search results view when a search query is provided
+      component: SearchResultsView // Display the search results view when a search query is provided
     },
     {
       path: '/top10/:artistId',
       name: 'Top10',
-      component: Top10View, // Display the top 10 view for a specific artist
+      component: Top10View // Display the top 10 view for a specific artist
     },
     {
       path: '/callback',
       name: 'Callback',
       // Custom navigation guard to handle authorization callback
       beforeEnter: async (to, from, next) => {
-        const code = to.query.code;
-
+        const code = to.query.code
+    
         if (code) {
-          console.log('Authorization code:', code);
-          const tokens = await requestAccessToken(code);
-
+          console.log('Authorization code:', code)
+          
+          // Retrieve the codeVerifier from local storage
+          const codeVerifier = localStorage.getItem('pkce_code_verifier')
+          console.log('Code verifier:', codeVerifier)
+    
+          // Pass the codeVerifier to requestAccessToken function
+          const tokens = await requestAccessToken(code, codeVerifier)
+    
           if (tokens) {
             // Set the tokens in the store
-            const authStore = useAuthStore();
-
-            authStore.setTokens(tokens.accessToken, tokens.refreshToken, tokens.expiresIn);
-
+            const authStore = useAuthStore()
+    
+            authStore.setTokens(tokens.accessToken, tokens.refreshToken, tokens.expiresIn)
+    
             // Navigate to the home view after successfully setting the tokens
-            next({ name: 'Home' });
+            next({ name: 'Home' })
           } else {
             // Handle error in getting tokens
             console.error('Authorisation code has expired or is invalid. Please try again.')
-            next({ name: 'Home' });
+            next({ name: 'Home' })
           }
         } else {
           // Redirect to the home page if there's no code in the query
-          next({ name: 'Home' });
+          next({ name: 'Home' })
         }
-      },
-    },
+      }
+    }
   ]
 })
 
