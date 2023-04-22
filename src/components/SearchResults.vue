@@ -1,3 +1,4 @@
+
 <template>
   <div class="container mx-auto px-4 bg-white overflow-y-auto">
     <div class="grid grid-cols-3 gap-4 justify-items-start">
@@ -16,16 +17,10 @@
                 alt="artist-image"
                 class="w-12 h-12 rounded-full"
               />
-              <p class="truncate w-40">{{ artist.name }}</p>
+              <router-link :to="`/artist/${artist.id}`" class="truncate w-50">{{ artist.name }}</router-link>
             </div>
           </li>
         </ul>
-        <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-          @click="loadMoreArtists"
-        >
-          Load More
-        </button>
       </div>
 
       <!-- Tracks Column -->
@@ -44,7 +39,7 @@
                 class="w-12 h-12 rounded"
               />
               <div>
-                <p class="truncate w-64">{{ track.name }}</p>
+                <router-link :to="`/track/${track.id}`" class="truncate w-40">{{ track.name }}</router-link>
                 <p class="text-gray-600 text-sm truncate w-40">
                   {{ track.artists.map((a) => a.name).join(', ') }}
                 </p>
@@ -52,12 +47,6 @@
             </div>
           </li>
         </ul>
-        <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-          @click="loadMoreTracks"
-        >
-          Load More
-        </button>
       </div>
 
       <!-- Albums Column -->
@@ -76,7 +65,7 @@
                 class="w-12 h-12 rounded"
               />
               <div>
-                <p class="truncate w-40">{{ album.name }}</p>
+                <router-link :to="`/album/${album.id}`" class="truncate w-50">{{ album.name }}</router-link>
                 <p class="text-gray-600 text-sm truncate w-40">
                   {{ album.artists.map((a) => a.name).join(', ') }}
                 </p>
@@ -84,13 +73,6 @@
             </div>
           </li>
         </ul>
-        <!-- TODO - Make this button a component and import -->
-        <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-          @click="loadMoreAlbums"
-        >
-          Load More
-        </button>
       </div>
     </div>
   </div>
@@ -103,21 +85,7 @@ import { useSearchStore } from '@/stores/searchStore'
 export default defineComponent({
   setup() {
     const defaultImage = 'https://via.placeholder.com/64'
-
-    // Get an instance of the search store
     const searchStore = useSearchStore()
-
-    const loadMoreArtists = async () => {
-      await searchStore.loadMoreArtists()
-    }
-
-    const loadMoreTracks = async () => {
-      await searchStore.loadMoreTracks()
-    }
-
-    const loadMoreAlbums = async () => {
-      await searchStore.loadMoreAlbums()
-    }
 
     // Computed properties to access the search store
     const artists = computed(() => searchStore.artists)
@@ -126,9 +94,6 @@ export default defineComponent({
 
     return {
       defaultImage,
-      loadMoreArtists,
-      loadMoreTracks,
-      loadMoreAlbums,
       artists,
       tracks,
       albums

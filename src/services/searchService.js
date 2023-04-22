@@ -25,6 +25,10 @@ async function searchAlbums(query, offset, limit) {
   return response.albums
 }
 
+// async function getArtist(id) {
+//   const accessToken = await spotifyService.getAccessToken()
+
+
 export default {
   searchInitial,
   searchArtists,

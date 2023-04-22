@@ -6,7 +6,6 @@
 
         <nav class="flex gap-6">
           <RouterLink to="/" class="text-white text-xl">Home</RouterLink>
-          <RouterLink to="/top10" class="text-white text-xl">Top 10</RouterLink>
         </nav>
       </div>
     </header>

@@ -2,7 +2,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import SearchResultsView from '../views/SearchResultsView.vue'
-import Top10View from '../views/Top10View.vue'
 import { useAuthStore } from '../stores/authStore'
 import { requestAccessToken } from '../auth'
 
@@ -21,9 +20,19 @@ const router = createRouter({
       component: SearchResultsView // Display the search results view when a search query is provided
     },
     {
-      path: '/top10/:artistId',
-      name: 'Top10',
-      component: Top10View // Display the top 10 view for a specific artist
+      path: '/artist/:id',
+      name: 'artist',
+      component: () => import('@/views/ArtistDetailView.vue')
+    },
+    {
+      path: '/track/:id',
+      name: 'track',
+      component: () => import('@/views/TrackDetailView.vue')
+    },
+    {
+      path: '/album/:id',
+      name: 'album',
+      component: () => import('@/views/AlbumDetailView.vue')
     },
     {
       path: '/callback',

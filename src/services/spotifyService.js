@@ -4,7 +4,6 @@ import { refreshToken, isAccessTokenExpired } from '@/auth'
 
 const API_BASE_URL = 'https://api.spotify.com/v1'
 
-// Create an axios instance with the base URL and default headers
 const apiClient = axios.create({
 	baseURL: API_BASE_URL,
 	headers: {
@@ -12,7 +11,6 @@ const apiClient = axios.create({
 	}
 })
 
-// Add an interceptor to the axios instance to automatically set the Authorization header
 apiClient.interceptors.request.use(
 	async (config) => {
 		const accessToken = await getAccessToken()
@@ -27,15 +25,13 @@ apiClient.interceptors.request.use(
 async function getAccessToken() {
 	const authStore = useAuthStore()
 
-	// Check if the access token is expired, and refresh it if necessary
 	if (isAccessTokenExpired(authStore.accessTokenExpiration)) {
 		const newAccessToken = await refreshToken(authStore.refreshToken)
 
 		if (newAccessToken) {
-			const expiresIn = 3600 // TODO - Get the expiration time from the response object
+			const expiresIn = 3600
 			authStore.setTokens(newAccessToken, authStore.refreshToken, expiresIn)
 		} else {
-			// TODO - Handle error in refreshing the access token
 			authStore.clearTokens()
 		}
 	}
@@ -43,24 +39,19 @@ async function getAccessToken() {
 	return authStore.accessToken
 }
 
-// Function to search the Spotify API using the given query and parameters
 async function search(query, token, type, offset, limit) {
 	try {
-		const response = await axios.get('https://api.spotify.com/v1/search', {
+		const response = await apiClient.get('/search', {
 			params: {
 				q: query,
 				type: type,
 				offset: offset,
 				limit: limit
-			},
-			headers: {
-				Authorization: `Bearer ${token}`
 			}
 		})
 
 		console.log('Response data:', response)
 
-		// Return the search results as an object containing arrays of artists, tracks, and albums
 		return {
 			artists: response.data.artists.items || [],
 			tracks: response.data.tracks.items || [],
@@ -72,7 +63,16 @@ async function search(query, token, type, offset, limit) {
 	}
 }
 
-// Function to revoke the access token
+async function getArtist(id) {
+	try {
+	  const response = await apiClient.get(`/artists/${id}`)
+	  return response.data
+	} catch (error) {
+	  console.error('Error fetching artist:', error)
+	  return null
+	}
+}
+
 async function deauthoriseSpotify(clientId, accessToken) {
 	try {
 		await axios.post(`http://localhost:4000/revoke-token?access_token=${accessToken}`);
@@ -86,5 +86,6 @@ async function deauthoriseSpotify(clientId, accessToken) {
 export default {
 	search,
 	getAccessToken,
-	deauthoriseSpotify
+	deauthoriseSpotify,
+	getArtist
 }
