@@ -73,6 +73,17 @@ async function getArtist(id) {
 	}
 }
 
+async function getArtistAlbums(id) {
+	try {
+		const response = await apiClient.get(`/artists/${id}/albums`)
+		return response.data
+	} catch (error) {
+		console.error('Error fetching album:', error)
+		return null
+	}
+}
+		
+
 async function deauthoriseSpotify(clientId, accessToken) {
 	try {
 		await axios.post(`http://localhost:4000/revoke-token?access_token=${accessToken}`);
@@ -87,5 +98,6 @@ export default {
 	search,
 	getAccessToken,
 	deauthoriseSpotify,
-	getArtist
+	getArtist,
+	getArtistAlbums,
 }

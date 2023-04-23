@@ -13,7 +13,7 @@
     <RouterView />
 
     <footer>
-      <div class="container mx-auto py-20 flex flex-col items-center text-white">
+      <div class="w-full py-20 flex flex-col items-center text-white bg-[#111827]">
         <p>Wotify &copy; 2023</p>
       </div>
     </footer>

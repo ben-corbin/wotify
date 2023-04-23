@@ -1,67 +1,104 @@
 <template>
-    <div v-if="artistData" class="bg-gray-900 text-white min-h-screen">
-      <div class="container mx-auto py-12">
-        <div class="flex flex-wrap items-center">
-          <div class="w-full md:w-1/2">
-            <img
-              :src="artistData.images[0].url"
-              :alt="artistData.name"
-              class="w-full h-auto object-cover rounded-lg"
-            />
-          </div>
-          <div class="w-full md:w-1/2 px-6 md:px-12">
-            <h1 class="text-4xl font-bold mb-4">{{ artistData.name }}</h1>
-            <div class="text-xl mb-4">
-              <span class="font-semibold">Genres:</span>
-              <span>{{ artistData.genres.join(', ') }}</span>
-            </div>
-            <div class="text-xl mb-4">
-              <span class="font-semibold">Popularity:</span>
-              <span>{{ artistData.popularity }}</span>
-            </div>
-            <div class="text-xl mb-4">
-              <span class="font-semibold">Followers:</span>
-              <span>{{ artistData.followers.total }}</span>
-            </div>
-            <div class="text-xl">
-              <span class="font-semibold">Spotify Page:</span>
-              <a
-                :href="artistData.external_urls.spotify"
-                class="text-blue-500 hover:text-blue-400"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open in Spotify
-              </a>
-            </div>
-          </div>
+    <div v-if="artistData" class="bg-gray-900 text-white">
+        <div class="container flex flex-col mx-auto md:flex-row items-center md:space-x-8 py-12">
+            <img v-if="artistData.images && artistData.images.length > 0" :src="artistData.images[0].url"
+                :alt="artistData.name" class="w-full md:w-1/2 h-auto object-cover rounded-lg shadow-md mb-8 md:mb-0" />
+
+            <ArtistBioCard :artist-name="artistName" :artist-genres="artistGenres" :artist-bio="artistBio"
+                :formatted-followers="formattedFollowers" :showModal="showModal" @open-modal="showModal = true"/>
+            <ArtistBioModal   v-if="showModal"
+      :artistName="artistName"
+      :artistGenres="artistGenres"
+      :artistBio="artistBio"
+      :formattedFollowers="formattedFollowers"
+      :showModal="showModal"
+      @open-modal="showModal = true"
+      @update:showModal="showModal = $event" />
+            <MonthlyPlays />
         </div>
-      </div>
+
+        <div class="container mx-auto py-12">
+            <h2 class="text-3xl font-bold mb-8">Albums</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <AlbumCard v-for="album in artistAlbums" :key="album.id" :album="album" :albumTracks="albumTracks" @mouseover="fetchAlbumTracks(album.name)" />
+            </div>
+        </div>
     </div>
-  </template>
-  
-  <script>
-  import { computed, onBeforeMount } from 'vue'
-  import { useArtistStore } from '@/stores/artistStore'
-  import { useRoute } from 'vue-router'
-  
-  export default {
-    setup() {
-      const route = useRoute()
-      const artistStore = useArtistStore()
-      const artistData = computed(() => artistStore.currentArtist)
-  
-      const fetchArtistById = async (id) => {
-        await artistStore.fetchArtistById(id)
-      }
-  
-      onBeforeMount(async () => {
-        await fetchArtistById(route.params.id)
-      })
-  
-      return {
-        artistData,
-      }
+</template>
+
+<script>
+import { defineComponent, computed, onBeforeMount, ref } from 'vue';
+import { useArtistStore } from '@/stores/artistStore';
+import { useAlbumStore } from '@/stores/albumStore';
+import { useRoute } from 'vue-router';
+import ArtistHeader from '@/components/ArtistHeader.vue';
+import AlbumCard from '@/components/AlbumCard.vue';
+import ArtistBioCard from '@/components/ArtistBioCard.vue';
+import MonthlyPlays from '@/components/MonthlyPlays.vue';
+import ArtistBioModal from '../components/ArtistBioModal.vue';
+
+export default defineComponent({
+    components: {
+        ArtistHeader,
+        AlbumCard,
+        ArtistBioCard,
+        MonthlyPlays,
+        ArtistBioModal
     },
-  }
-  </script>
+    setup() {
+        const route = useRoute();
+        const artistStore = useArtistStore();
+        const albumStore = useAlbumStore();
+        const artistData = computed(() => artistStore.currentArtist);
+        const artistAlbums = computed(() => artistStore.currentArtistAlbums);
+        const artistGenres = computed(() => artistStore.currentArtist.genres);
+        const artistName = computed(() => artistStore.currentArtist.name);
+        const showModal = ref(false)
+        const artistBio = computed(() => {
+            if (artistStore.artistBio && artistStore.artistBio.artist && artistStore.artistBio.artist.bio) {
+                return artistStore.artistBio.artist.bio.content;
+            } else {
+                return '';
+            }
+        });
+        const albumTracks = computed(() => albumStore.tracks);
+
+        const formattedFollowers = computed(() => {
+            return new Intl.NumberFormat().format(artistData.value?.followers?.total || 0);
+        });
+
+        const fetchArtistById = async (id) => {
+            await artistStore.fetchArtistById(id);
+        };
+
+        const fetchArtistAlbums = async (id) => {
+            await artistStore.fetchArtistAlbums(id);
+        };
+
+        const fetchAlbumTracks = async (albumName) => {
+            await albumStore.fetchTracks(artistName.value, albumName);
+        };
+
+        const fetchArtistBio = async (name) => {
+            await artistStore.fetchArtistBio(name);
+        };
+
+        onBeforeMount(async () => {
+            await fetchArtistById(route.params.id);
+            await fetchArtistAlbums(route.params.id);
+            await fetchArtistBio(artistName.value);
+        });
+
+        return {
+            artistData,
+            artistAlbums,
+            formattedFollowers,
+            artistBio,
+            artistName,
+            showModal,
+            albumTracks,
+            fetchAlbumTracks
+        };
+    },
+});
+</script>
