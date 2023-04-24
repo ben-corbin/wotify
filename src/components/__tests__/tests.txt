@@ -1,0 +1,64 @@
+I decided to leave tests in the exercise for timeliness reasons, however,
+I would create the following tests with more time that would give me a 
+decent amount of coverage:
+
+HomeView
+
+Test if the home view loads correctly
+Test if the search bar is present and functioning
+SearchResultsView
+
+Test if search results load correctly when a query is provided
+Test if no results are displayed when there are no matches
+Test if pagination works as expected
+
+ArtistDetailView
+
+Test if the artist detail view loads correctly
+Test if the artist's name, image, and bio are displayed
+Test if the artist's albums are displayed as album cards
+Test if clicking an album card navigates to the album detail view
+
+AlbumDetailView
+
+Test if the album detail view loads correctly
+Test if the album's name, image, and release date are displayed
+Test if the album's tracks are displayed with the correct information
+Test if clicking a track navigates to the track detail view
+
+TrackDetailView
+
+Test if the track detail view loads correctly
+Test if the track's name, image, and album name are displayed
+Test if the track's artist name is displayed and clickable (navigates to artist detail view)
+
+Navigation
+
+Test if the navigation bar is present on all views
+Test if the navigation bar contains a home link and a search bar
+Test if clicking the home link navigates to the home view
+
+Callback (Authorization)
+
+Test if the authorization callback works correctly
+Test if the app handles an invalid or expired authorization code
+Test if the app stores the access token and refresh token correctly
+
+SearchBar
+
+Test if the search bar is present in the navigation bar
+Test if typing a query and pressing Enter navigates to the search results view
+Test if the search bar clears its input after a successful search
+
+AlbumCard
+
+Test if the album card renders with the correct album information
+Test if clicking on the album card flips it to show the album's tracks
+
+ArtistBioCard
+
+Test if the artist bio card renders with the correct artist information (name, image, bio)
+
+TopTracksCard
+
+Test if the top tracks card renders with the correct track information (track name, artist name, album name)

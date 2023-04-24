@@ -1,5 +1,4 @@
 import axios from 'axios';
-import qs from 'qs';
 
 const API_KEY = import.meta.env.VITE_LAST_FM_API_KEY;
 

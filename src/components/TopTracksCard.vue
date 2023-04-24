@@ -1,6 +1,6 @@
 <template>
     <div class="track-card bg-white text-black shadow-md rounded-lg p-4">
-      <div v-for="track in topTracks">
+      <div v-for="track in topTracks" :key="track.id">
       <h3 class="text-xl font-semibold">{{ track?.name }}</h3>
       <p class="text-sm text-gray-600">Album: {{ track?.album.name }}</p>
       <p class="text-sm text-gray-600">Duration: {{ track?.duration_ms }} ms</p>

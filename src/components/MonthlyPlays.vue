@@ -15,14 +15,17 @@
       const chartContainer = ref(null);
       let svg;
   
-      const data = [
-        { month: 'Jan', plays: 1000 },
-        { month: 'Feb', plays: 1200 },
-        { month: 'Mar', plays: 800 },
-        { month: 'Apr', plays: 1800 },
-        { month: 'May', plays: 1500 },
-        { month: 'Jun', plays: 2000 },
-      ];
+      const generateRandomData = () => {
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return months.map((month) => ({
+          month,
+          plays: Math.floor(Math.random() * 2000) + 500,
+        }));
+      };
+  
+      const data = generateRandomData();
+  
+      const colors = d3.scaleOrdinal(d3.schemeCategory10);
   
       const drawChart = () => {
         svg = d3
@@ -66,10 +69,14 @@
           .join('rect')
           .attr('class', 'bar')
           .attr('x', (d) => xScale(d.month))
-          .attr('y', (d) => yScale(d.plays))
-          .attr('height', (d) => height - yScale(d.plays))
+          .attr('y', (d) => yScale(0))
+          .attr('height', (d) => height - yScale(0))
           .attr('width', xScale.bandwidth())
-          .attr('fill', '#1F2937');
+          .attr('fill', (d, i) => colors(i))
+          .transition()
+          .duration(1000)
+          .attr('y', (d) => yScale(d.plays))
+          .attr('height', (d) => height - yScale(d.plays));
       };
   
       onMounted(() => {
@@ -87,8 +94,7 @@
   
   <style scoped>
   .bar:hover {
-    fill: #374151;
+    opacity: 0.8;
     cursor: pointer;
   }
   </style>
-  

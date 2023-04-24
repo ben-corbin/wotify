@@ -1,0 +1,113 @@
+.
+├── README.md
+├── cypress
+│   ├── e2e
+│   │   ├── example.cy.js
+│   │   └── jsconfig.json
+│   ├── fixtures
+│   │   └── example.json
+│   └── support
+│       ├── commands.js
+│       ├── component-index.html
+│       ├── component.js
+│       └── e2e.js
+├── cypress.config.js
+├── dist
+│   ├── assets
+│   │   ├── PlusJakartaSans-Bold-c35135cb.woff
+│   │   ├── PlusJakartaSans-Light-60aed6d0.woff2
+│   │   ├── index-2c782460.js
+│   │   └── index-76e1ec6d.css
+│   ├── favicon.ico
+│   └── index.html
+├── folder-structure.txt
+├── index.html
+├── package-lock.json
+├── package.json
+├── plan.md
+├── postcss.config.js
+├── public
+│   └── apple-touch-icon.png
+├── server.js
+├── src
+│   ├── App.vue
+│   ├── assets
+│   │   ├── 63e8b0882d6553290e7441aa_Waves.svg
+│   │   └── main.css
+│   ├── auth.js
+│   ├── components
+│   │   ├── AlbumCard.vue
+│   │   ├── ArtistBioCard.vue
+│   │   ├── ArtistBioModal.vue
+│   │   ├── ArtistHeader.vue
+│   │   ├── AuthoriseWithSpotify.vue
+│   │   ├── DeAuthoriseSpotify.vue
+│   │   ├── MonthlyPlays.vue
+│   │   ├── PopOutPlayer.vue
+│   │   ├── SearchBar.vue
+│   │   ├── SearchResults.vue
+│   │   ├── SimilarArtistsCard.vue
+│   │   ├── TopTracksCard.vue
+│   │   └── __tests__
+│   ├── composables
+│   │   └── useAuth.js
+│   ├── fonts
+│   │   ├── PlusJakartaSans-Bold.woff
+│   │   ├── PlusJakartaSans-Bold.woff2
+│   │   ├── PlusJakartaSans-BoldItalic.woff
+│   │   ├── PlusJakartaSans-BoldItalic.woff2
+│   │   ├── PlusJakartaSans-ExtraBold.woff
+│   │   ├── PlusJakartaSans-ExtraBold.woff2
+│   │   ├── PlusJakartaSans-ExtraBoldItalic.woff
+│   │   ├── PlusJakartaSans-ExtraBoldItalic.woff2
+│   │   ├── PlusJakartaSans-ExtraLight.woff
+│   │   ├── PlusJakartaSans-ExtraLight.woff2
+│   │   ├── PlusJakartaSans-ExtraLightItalic.woff
+│   │   ├── PlusJakartaSans-ExtraLightItalic.woff2
+│   │   ├── PlusJakartaSans-Italic.woff
+│   │   ├── PlusJakartaSans-Italic.woff2
+│   │   ├── PlusJakartaSans-Light.woff
+│   │   ├── PlusJakartaSans-Light.woff2
+│   │   ├── PlusJakartaSans-LightItalic.woff
+│   │   ├── PlusJakartaSans-LightItalic.woff2
+│   │   ├── PlusJakartaSans-Medium.woff
+│   │   ├── PlusJakartaSans-Medium.woff2
+│   │   ├── PlusJakartaSans-MediumItalic.woff
+│   │   ├── PlusJakartaSans-MediumItalic.woff2
+│   │   ├── PlusJakartaSans-Regular.woff
+│   │   ├── PlusJakartaSans-Regular.woff2
+│   │   ├── PlusJakartaSans-SemiBold.woff
+│   │   ├── PlusJakartaSans-SemiBold.woff2
+│   │   ├── PlusJakartaSans-SemiBoldItalic.woff
+│   │   └── PlusJakartaSans-SemiBoldItalic.woff2
+│   ├── main.js
+│   ├── router
+│   │   └── index.js
+│   ├── services
+│   │   ├── albumService.js
+│   │   ├── artistService.js
+│   │   ├── bioService.js
+│   │   ├── lastFMService.js
+│   │   ├── searchService.js
+│   │   ├── similarArtists.js
+│   │   ├── spotifyService.js
+│   │   └── trackService.js
+│   ├── stores
+│   │   ├── albumStore.js
+│   │   ├── artistStore.js
+│   │   ├── authStore.js
+│   │   ├── bioStore.js
+│   │   ├── index.js
+│   │   ├── searchStore.js
+│   │   ├── similarArtistStore.js
+│   │   └── trackStore.js
+│   └── views
+│       ├── AlbumDetailView.vue
+│       ├── ArtistDetailView.vue
+│       ├── HomeView.vue
+│       ├── SearchResultsView.vue
+│       └── TracksDetailView.vue
+├── tailwind.config.js
+└── vite.config.js
+
+18 directories, 93 files

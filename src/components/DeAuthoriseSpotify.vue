@@ -26,7 +26,7 @@
       // The 'deauthorise' function is called when the button is clicked
       async function deauthorise() {
         // If the user is authenticated, proceed with deauthorisation
-        if (isAuthorised) {
+        if (isAuthorised.value) {
           // Get the client ID from the environment variables
           const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
   

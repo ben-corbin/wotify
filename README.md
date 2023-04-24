@@ -1,57 +1,46 @@
-# wotify
+# Wotify
 
-This template should help get you started developing with Vue 3 in Vite.
+Wotify is a web application that leverages the Spotify and Last.fm APIs to provide search results for artists, albums, and tracks. The artist view displays artist bios, albums, and top tracks.
 
-## Recommended IDE Setup
+## Technologies and Frameworks
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+This project is built with the following technologies:
 
-## Customize configuration
+- Vite
+- Vue 3
+- Pinia
+- Tailwind CSS
+- Various Vue and JavaScript libraries
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Prerequisites
 
-## Project Setup
+To run this project, you'll need:
 
-```sh
-npm install
-```
+- Node.js v12.x or later
+- npm v6.x or later
 
-### Compile and Hot-Reload for Development
+## Installation
 
-```sh
-npm run dev
-```
+1. Clone the repository and open the project in Visual Studio Code (or your editor of choice).
+2. Open a terminal and run `npm install` to install the required dependencies.
+3. Run `npm run dev` to start the development server.
+4. Send your Spotify account details to ben@corbin.digital to be added to the app's dashboard on the Spotify Developer Dashboard.
 
-### Compile and Minify for Production
+## Usage
 
-```sh
-npm run build
-```
+1. Open the app in your browser and click the "Authorize with Spotify" button.
+2. You'll be redirected to a Spotify-controlled page where you can authorize your account to grant API access to the app. You can revoke this access at any time via your Spotify settings, found here: https://www.spotify.com/uk/account/apps/
+3. Once authorized, you can search for artists. Clicking on an artist link will take you to their artist page with information about the artist, their albums, and tracks. Note that track and album search result links are not currently connected to components and will not navigate.
 
-### Run Headed Component Tests with [Cypress Component Testing](https://on.cypress.io/component)
 
-```sh
-npm run test:unit:dev # or `npm run test:unit` for headless testing
-```
+## Contributing
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+This is a tech test, and contributions are not needed.
 
-```sh
-npm run test:e2e:dev
-```
+## License
 
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
+This project is released under the [MIT License](https://choosealicense.com/licenses/mit/), which is suitable for a tech test.
 
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
+## Contact Information
 
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+For any questions or feedback, feel free to reach out to ben@corbin.digital
