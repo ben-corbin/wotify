@@ -37,12 +37,8 @@ export default defineComponent({
             type: Object,
             required: true,
         },
-        spotifyAPI: {
-            type: Object,
-            required: true,
-        },
         albumTracks: {
-            type: Array,
+            type: Object,
             required: true,
         },
     },

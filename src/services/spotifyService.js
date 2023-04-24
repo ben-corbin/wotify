@@ -75,10 +75,20 @@ async function getArtist(id) {
 
 async function getArtistAlbums(id) {
 	try {
-		const response = await apiClient.get(`/artists/${id}/albums`)
+		const response = await apiClient.get(`/artists/${id}/albums/`)
 		return response.data
 	} catch (error) {
 		console.error('Error fetching album:', error)
+		return null
+	}
+}
+
+async function getTopTracks(id) {
+	try {
+		const response = await apiClient.get(`/artists/${id}/top-tracks?country=GB`)
+		return response.data
+	} catch (error) {
+		console.error('Error fetching top tracks:', error)
 		return null
 	}
 }
@@ -100,4 +110,5 @@ export default {
 	deauthoriseSpotify,
 	getArtist,
 	getArtistAlbums,
+	getTopTracks
 }

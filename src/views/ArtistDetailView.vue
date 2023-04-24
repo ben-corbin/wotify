@@ -4,7 +4,7 @@
     <img v-if="artistData.images && artistData.images.length > 0" :src="artistData.images[0].url"
         :alt="artistData.name" class="w-full md:w-1/2 h-auto object-cover rounded-lg shadow-md mb-8 md:mb-0 flex-grow" />
 
-    <ArtistBioCard :artist-name="artistName" :artist-genres="artistGenres" :artist-bio="artistBio"
+    <ArtistBioCard :artist-name="artistName" :artist-bio="artistBio"
         :formatted-followers="formattedFollowers" :showModal="showModal" @open-modal="showModal = true" class="flex-grow"/>
     <ArtistBioModal   v-if="showModal"
         :artistName="artistName"
@@ -15,6 +15,7 @@
         @open-modal="showModal = true"
         @update:showModal="showModal = $event" class="flex-grow"/>
     <MonthlyPlays class="flex-grow"/>
+    <!-- <TopTracksCard class="flex-grow" :top-tracks="topTracks"/> -->
 </div>
 
 
@@ -31,28 +32,31 @@
 import { defineComponent, computed, onBeforeMount, ref } from 'vue';
 import { useArtistStore } from '@/stores/artistStore';
 import { useAlbumStore } from '@/stores/albumStore';
+import { useTrackStore } from '@/stores/trackStore';
 import { useRoute } from 'vue-router';
 import ArtistHeader from '@/components/ArtistHeader.vue';
 import AlbumCard from '@/components/AlbumCard.vue';
 import ArtistBioCard from '@/components/ArtistBioCard.vue';
 import MonthlyPlays from '@/components/MonthlyPlays.vue';
 import ArtistBioModal from '../components/ArtistBioModal.vue';
+import TopTracksCard from '../components/TopTracksCard.vue';
 
 export default defineComponent({
     components: {
-        ArtistHeader,
-        AlbumCard,
-        ArtistBioCard,
-        MonthlyPlays,
-        ArtistBioModal
-    },
+    ArtistHeader,
+    AlbumCard,
+    ArtistBioCard,
+    MonthlyPlays,
+    ArtistBioModal,
+    TopTracksCard
+},
     setup() {
         const route = useRoute();
         const artistStore = useArtistStore();
         const albumStore = useAlbumStore();
+        const trackStore = useTrackStore();
         const artistData = computed(() => artistStore.currentArtist);
         const artistAlbums = computed(() => artistStore.currentArtistAlbums);
-        const artistGenres = computed(() => artistStore.currentArtist.genres);
         const artistName = computed(() => artistStore.currentArtist.name);
         const showModal = ref(false)
         const artistBio = computed(() => {
@@ -63,6 +67,7 @@ export default defineComponent({
             }
         });
         const albumTracks = computed(() => albumStore.tracks);
+        const topTracks = computed(() => trackStore.topTracks);
 
         const formattedFollowers = computed(() => {
             return new Intl.NumberFormat().format(artistData.value?.followers?.total || 0);
@@ -84,10 +89,15 @@ export default defineComponent({
             await artistStore.fetchArtistBio(name);
         };
 
+        const fetchTopTracks = async (id) => {
+            await trackStore.fetchTopTracks(id);
+        };
+
         onBeforeMount(async () => {
             await fetchArtistById(route.params.id);
             await fetchArtistAlbums(route.params.id);
             await fetchArtistBio(artistName.value);
+            await fetchTopTracks(route.params.id);
         });
 
         return {
@@ -98,7 +108,8 @@ export default defineComponent({
             artistName,
             showModal,
             albumTracks,
-            fetchAlbumTracks
+            fetchAlbumTracks,
+            topTracks
         };
     },
 });

@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center pt-8">
+  <div class="text-center py-8">
     <button
       @click="authorise"
       class="bg-green-600 text-white font-semibold py-2 px-4 rounded shadow-md hover:bg-green-800"

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-between h-[100vh]">
+  <div class="bg-custom-image flex flex-col justify-between h-[100vh]">
     <header>
       <div class="container mx-auto py-20 flex flex-row justify-between items-center">
         <h1 class="text-6xl text-white">Wotify</h1>
@@ -13,7 +13,7 @@
     <RouterView />
 
     <footer>
-      <div class="w-full py-20 flex flex-col items-center text-white bg-[#111827]">
+      <div class="w-full py-20 flex flex-col items-center text-white">
         <p>Wotify &copy; 2023</p>
       </div>
     </footer>

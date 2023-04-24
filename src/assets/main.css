@@ -18,3 +18,10 @@ html {
   font-weight: normal;
   font-style: normal;
 }
+
+.bg-custom-image {
+  background-image: url('./63e8b0882d6553290e7441aa_Waves.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

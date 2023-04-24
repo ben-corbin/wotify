@@ -6,13 +6,13 @@
     <SearchResults v-if="searchResultsPresent" />
   </transition>
   <AuthoriseWithSpotify />
-  <DeAuthoriseSpotify />
+  <!-- <DeAuthoriseSpotify /> -->
 </template>
 
 <script setup>
 import SearchBar from '../components/SearchBar.vue'
 import AuthoriseWithSpotify from '../components/AuthoriseWithSpotify.vue'
-import DeAuthoriseSpotify from '../components/DeAuthoriseSpotify.vue'
+// import DeAuthoriseSpotify from '../components/DeAuthoriseSpotify.vue'
 import SearchResults from '../components/SearchResults.vue'
 import { useSearchStore } from '../stores/searchStore'
 // import useAuth from '../composables/useAuth';
