@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white text-black shadow-md rounded-lg p-4">
+    <div class="bg-white text-black shadow-md rounded-lg p-4 h-[325px]">
       <h3 class="text-xl font-semibold mb-4">Monthly Plays</h3>
       <div ref="chartContainer" class="w-full h-64"></div>
     </div>

@@ -1,21 +1,22 @@
 <template>
     <div v-if="artistData" class="bg-gray-900 text-white">
-        <div class="container flex flex-col mx-auto md:flex-row items-center md:space-x-8 py-12">
-            <img v-if="artistData.images && artistData.images.length > 0" :src="artistData.images[0].url"
-                :alt="artistData.name" class="w-full md:w-1/2 h-auto object-cover rounded-lg shadow-md mb-8 md:mb-0" />
+        <div class="container flex flex-col mx-auto md:flex-row items-center md:space-x-8 py-12 md:flex">
+    <img v-if="artistData.images && artistData.images.length > 0" :src="artistData.images[0].url"
+        :alt="artistData.name" class="w-full md:w-1/2 h-auto object-cover rounded-lg shadow-md mb-8 md:mb-0 flex-grow" />
 
-            <ArtistBioCard :artist-name="artistName" :artist-genres="artistGenres" :artist-bio="artistBio"
-                :formatted-followers="formattedFollowers" :showModal="showModal" @open-modal="showModal = true"/>
-            <ArtistBioModal   v-if="showModal"
-      :artistName="artistName"
-      :artistGenres="artistGenres"
-      :artistBio="artistBio"
-      :formattedFollowers="formattedFollowers"
-      :showModal="showModal"
-      @open-modal="showModal = true"
-      @update:showModal="showModal = $event" />
-            <MonthlyPlays />
-        </div>
+    <ArtistBioCard :artist-name="artistName" :artist-genres="artistGenres" :artist-bio="artistBio"
+        :formatted-followers="formattedFollowers" :showModal="showModal" @open-modal="showModal = true" class="flex-grow"/>
+    <ArtistBioModal   v-if="showModal"
+        :artistName="artistName"
+        :artistGenres="artistGenres"
+        :artistBio="artistBio"
+        :formattedFollowers="formattedFollowers"
+        :showModal="showModal"
+        @open-modal="showModal = true"
+        @update:showModal="showModal = $event" class="flex-grow"/>
+    <MonthlyPlays class="flex-grow"/>
+</div>
+
 
         <div class="container mx-auto py-12">
             <h2 class="text-3xl font-bold mb-8">Albums</h2>
