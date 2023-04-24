@@ -1,11 +1,11 @@
 
 <template>
-  <div class="container mx-auto px-4 bg-white overflow-y-auto">
+  <div class="container mx-auto px-4 bg-gray-200 overflow-y-auto">
     <div class="grid grid-cols-3 gap-4 justify-items-start">
       <!-- Artists Column -->
       <div class="col-span-1">
         <h2
-          class="text-xl font-semibold mb-4 text-center text-black sticky top-0 bg-white z-10 py-6"
+          class="text-2xl font-semibold mb-4 text-center text-black sticky top-0 bg-gray-200 z-10 py-6"
         >
           Artists
         </h2>
@@ -26,7 +26,7 @@
       <!-- Tracks Column -->
       <div class="col-span-1">
         <h2
-          class="text-xl font-semibold mb-4 text-center text-black sticky top-0 bg-white z-10 py-6"
+          class="text-2xl font-semibold mb-4 text-center text-black sticky top-0 bg-gray-200 z-10 py-6"
         >
           Tracks
         </h2>
@@ -52,7 +52,7 @@
       <!-- Albums Column -->
       <div class="col-span-1">
         <h2
-          class="text-xl font-semibold mb-4 text-center text-black sticky top-0 bg-white z-10 py-6"
+          class="text-2xl font-semibold mb-4 text-center text-black sticky top-0 bg-gray-200 z-10 py-6"
         >
           Albums
         </h2>
