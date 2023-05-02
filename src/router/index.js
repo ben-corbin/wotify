@@ -24,16 +24,16 @@ const router = createRouter({
       name: 'artist',
       component: () => import('@/views/ArtistDetailView.vue')
     },
-    {
-      path: '/track/:id',
-      name: 'track',
-      component: () => import('@/views/TrackDetailView.vue')
-    },
-    {
-      path: '/album/:id',
-      name: 'album',
-      component: () => import('@/views/AlbumDetailView.vue')
-    },
+    // {
+    //   path: '/track/:id',
+    //   name: 'track',
+    //   component: () => import('@/views/TrackDetailView.vue')
+    // },
+    // {
+    //   path: '/album/:id',
+    //   name: 'album',
+    //   component: () => import('@/views/AlbumDetailView.vue')
+    // },
     {
       path: '/callback',
       name: 'Callback',
