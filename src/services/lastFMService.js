@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = import.meta.env.production.VITE_LAST_FM_API_KEY;
+const API_KEY = import.meta.env.VITE_LAST_FM_API_KEY;
 
 async function fetchArtistBio(artistName) {
     console.log('api key:', API_KEY)
