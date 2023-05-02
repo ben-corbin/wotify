@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md mx-auto text-gray-800 h-[325px]">
+  <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md mx-auto text-gray-800">
     <h2 class="text-2xl font-semibold mb-4">{{ artistName }}</h2>
     <p class="text-sm text-gray-600 mb-6">{{ artistGenres }}</p>
     <p class="text-base">{{ truncatedBio }}</p>

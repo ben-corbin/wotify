@@ -1,7 +1,7 @@
 
 <template>
   <div class="container mx-auto px-4 bg-gray-200 overflow-y-auto">
-    <div class="grid grid-cols-3 gap-4 justify-items-start">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center md:justify-items-start">
       <!-- Artists Column -->
       <div class="col-span-1">
         <h2
@@ -24,7 +24,7 @@
       </div>
 
       <!-- Tracks Column -->
-      <div class="col-span-1">
+      <div class="col-span-1 hidden md:block">
         <h2
           class="text-2xl font-semibold mb-4 text-center text-black sticky top-0 bg-gray-200 z-10 py-6"
         >
@@ -50,7 +50,7 @@
       </div>
 
       <!-- Albums Column -->
-      <div class="col-span-1">
+      <div class="col-span-1 hidden lg:block">
         <h2
           class="text-2xl font-semibold mb-4 text-center text-black sticky top-0 bg-gray-200 z-10 py-6"
         >

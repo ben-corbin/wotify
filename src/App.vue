@@ -2,10 +2,10 @@
   <div class="bg-custom-image flex flex-col justify-between h-[100vh]">
     <header>
       <div class="container mx-auto py-20 flex flex-row justify-between items-center">
-        <h1 class="text-6xl text-white">Wotify</h1>
+        <h1 class="text-6xl text-white px-4">Wotify</h1>
 
         <nav class="flex gap-6">
-          <RouterLink to="/" class="text-white text-xl">Home</RouterLink>
+          <RouterLink to="/" class="text-white text-xl px-4">Home</RouterLink>
         </nav>
       </div>
     </header>

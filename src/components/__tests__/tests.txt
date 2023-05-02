@@ -6,11 +6,12 @@ HomeView
 
 Test if the home view loads correctly
 Test if the search bar is present and functioning
+
 SearchResultsView
 
 Test if search results load correctly when a query is provided
 Test if no results are displayed when there are no matches
-Test if pagination works as expected
+Test if pagination / infinite scroll works as expected
 
 ArtistDetailView
 

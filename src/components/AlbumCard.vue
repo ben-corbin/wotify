@@ -7,8 +7,8 @@ Copy code
                     <div class="relative pb-1/1">
                         <img :src="album.images[0].url" alt="" class="w-full h-full object-cover rounded-lg" />
                     </div>
-                    <h3 class="mt-4 text-xl font-semibold text-gray-900">{{ album.name }}</h3>
-                    <p class="text-sm text-gray-600">Release Date: {{ album.release_date }}</p>
+                    <h3 class=":mt-4 text-xl font-semibold text-gray-900">{{ album.name }}</h3>
+                    <p class="text-sm text-gray-600">Release Date: {{ date }}</p>
                     <p class="text-sm text-gray-600">Total Tracks: {{ album.total_tracks }}</p>
                 </div>
 
@@ -29,7 +29,7 @@ Copy code
 
   
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, computed } from "vue";
 
 export default defineComponent({
     props: {
@@ -46,15 +46,16 @@ export default defineComponent({
         const flipped = ref(false);
         const tracks = ref([]);
 
-        async function fetchTracks() {
-            const response = await props.spotifyAPI.getAlbumTracks(props.album.id);
-            tracks.value = response.items;
-        }
+        const date = computed(() => {
+            const date = new Date(props.album.release_date);
+            return date.toLocaleDateString("en-GB", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            });
+        });
 
         function toggleFlipped() {
-            if (!flipped.value) {
-                fetchTracks();
-            }
             flipped.value = !flipped.value;
         }
 
@@ -62,6 +63,7 @@ export default defineComponent({
             flipped,
             tracks,
             toggleFlipped,
+            date,
         };
     },
 });
