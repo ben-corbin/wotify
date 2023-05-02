@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import SpotifyService from '@/services/SpotifyService';
+import spotifyService from '@/services/spotifyService';
 import lastFMService from '@/services/lastFMService';
 
 export const useArtistStore = defineStore({
@@ -11,11 +11,11 @@ export const useArtistStore = defineStore({
   }),
   actions: {
     async fetchArtistById(id) {
-      const artist = await SpotifyService.getArtist(id);
+      const artist = await spotifyService.getArtist(id);
       this.currentArtist = artist;
     },
     async fetchArtistAlbums(id) {
-      const albums = await SpotifyService.getArtistAlbums(id);
+      const albums = await spotifyService.getArtistAlbums(id);
       this.currentArtistAlbums = albums.items;
     },
     async fetchArtistBio(artistName) {
