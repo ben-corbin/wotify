@@ -41,7 +41,7 @@ export async function authorizeSpotify() {
   const scope = 'user-read-private user-read-email' // Add your required scopes here
   const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}&code_challenge=${codeChallenge}&code_challenge_method=S256`
 
-  // Store the codeVerifier in localStorage or any other storage of your choice
+  // Store the codeVerifier in localStorage 
   console.log('Code verifier:', codeVerifier)
   localStorage.setItem('pkce_code_verifier', codeVerifier)
 
