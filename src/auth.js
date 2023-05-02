@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 // Define the necessary OAuth credentials and redirect URI
-const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID
-const redirectUri = import.meta.env.VITE_REDIRECT_URI
+const clientId = import.meta.env.production.VITE_SPOTIFY_CLIENT_ID
+const redirectUri = import.meta.env.production.VITE_REDIRECT_URI
 
 // Function to generate a random code verifier
 export function generateCodeVerifier() {
